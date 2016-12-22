@@ -1,0 +1,8 @@
+tickTime=2000
+initLimit=10
+syncLimit=5
+dataDir=/zk_data/zookeeper
+clientPort=2181
+maxClientCnxns=1000
+{{range $dir := lsdir "/hosts"}}{{$sid := printf "/hosts/%s/sid" $dir}}
+{{$ip := printf "/hosts/%s/ip" $dir}}server.{{getv $sid}}={{getv $ip}}:2888:3888{{end}}

@@ -1,0 +1,37 @@
+cluster.name: {{getv "/cluster/cluster_id"}}
+node.name: {{getv "/cluster/cluster_id"}}-{{getv "/host/sid"}}
+action.destructive_requires_name: true
+action.disable_shutdown: true
+bootstrap.mlockall: true{{$hosts := lsdir "/hosts/"}}{{$cluster_size := len $hosts}}{{$minimum_master_nodes := add (div $cluster_size 2) 1}}
+discovery.zen.minimum_master_nodes: {{if gt $cluster_size 2}}{{$minimum_master_nodes}}{{else}}{{$cluster_size}}{{end}}
+discovery.zen.ping.multicast.enabled: false
+discovery.zen.ping.timeout: 5s
+discovery.zen.ping.unicast.hosts: {{ range $host := $hosts }} {{ $path := printf "/hosts/%s/ip" $host }}
+  - {{getv $path}}{{end}}
+gateway.recover_after_nodes: {{max (sub $cluster_size 2) $minimum_master_nodes}}
+http.port: 9200
+index.indexing.slowlog.level: info
+index.indexing.slowlog.source: 1000
+index.indexing.slowlog.threshold.index.debug: 2s
+index.indexing.slowlog.threshold.index.info: 5s
+index.search.slowlog.threshold.fetch.debug: 500ms
+index.search.slowlog.threshold.fetch.info: 800ms
+index.search.slowlog.threshold.fetch.trace: 200ms
+index.search.slowlog.threshold.fetch.warn: 1s
+index.search.slowlog.threshold.query.debug: 2s
+index.search.slowlog.threshold.query.info: 5s
+index.search.slowlog.threshold.query.trace: 500ms
+index.search.slowlog.threshold.query.warn: 10s
+network.host: 0.0.0.0
+node.max_local_storage_nodes: 1
+path.data: /data/elasticsearch/data
+path.logs: /data/elasticsearch/logs
+script.file: false
+script.indexed: sandbox
+script.inline: sandbox
+script.mapping: false
+script.update: false
+http.cors.enabled: true
+http.cors.allow-origin: "*"
+index.number_of_shards: 3
+index.number_of_replicas: 1

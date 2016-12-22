@@ -1,0 +1,6 @@
+[template]
+src = "myid.tmpl"
+dest = "/zk_data/zookeeper/myid"
+keys = [
+    "/",
+]

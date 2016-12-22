@@ -1,0 +1,41 @@
+{
+  "app_id": "app-ElasticSearchRwQJP6VOysQszXDID5fZ0iT",
+  "app_version": "1.0",
+  "vxnet": "vxnet-cyyv1go",
+  "node": {
+     "container": {
+        "type": "kvm",
+        "image": "img-c3hmvw51",
+        "zone": "test"
+     },
+     "instance_class": 0,
+     "count": 3,
+     "cpu": 1,
+     "memory": 1024,
+     "volume": {
+         "size": 10,
+         "mount_point": "/data",
+         "filesystem": "ext4",
+         "class": 0
+     },
+     "service": {
+        "start": {
+           "cmd": "/opt/elasticsearch/bin/start-server.sh"
+        },
+        "stop": {
+           "cmd": "/opt/elasticsearch/bin/stop-server.sh"
+        }
+     }
+  },
+  "advanced_action": ["change_vxnet", "scale_horizontal"],
+  "endpoint": {
+    "rpc_port": {
+      "port": 9300,
+      "protocol": "tcp"
+    },
+    "http_port": {
+      "port": 9200,
+      "protocol": "http"
+    }
+  }
+}

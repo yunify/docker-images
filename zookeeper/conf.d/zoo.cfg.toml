@@ -1,0 +1,7 @@
+[template]
+src = "zoo.cfg.tmpl"
+dest = "/opt/zookeeper/conf/zoo.cfg"
+keys = [
+    "/",
+]
+reload_cmd = "/opt/zookeeper/bin/restart-server.sh"
