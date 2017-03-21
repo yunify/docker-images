@@ -1,4 +1,4 @@
-FROM dockerhub.qingcloud.com/qingcloud/confd:v0.13.5
+FROM dockerhub.qingcloud.com/qingcloud/confd:v0.13.7
 
 # A few problems with compiling Java from source:
 #  1. Oracle.  Licensing prevents us from redistributing the official JDK.
