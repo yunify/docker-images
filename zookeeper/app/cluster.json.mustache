@@ -1,0 +1,31 @@
+{
+    "name": {{cluster.name}},
+    "description": {{cluster.description}},
+    "vxnet": {{cluster.vxnet}},
+    "nodes": [{
+        "container": {
+            "type": "docker",
+            "image": "dockerhub.qingcloud.com/qingcloud/zookeeper"
+        },
+        "count": {{cluster.node.count}},
+        "cpu": {{cluster.node.cpu}},
+        "instance_class": {{cluster.node.instance_class}},
+        "memory": {{cluster.node.memory}},
+        "volume": {
+            "size": {{cluster.node.memory}} * 4 / 1024 * 10,
+            "mount_point": "/zk_data",
+            "mount_options": "defaults,noatime",
+            "filesystem": "ext4"
+        },
+        "server_id_upper_bound": 255,
+        "services": {
+            "start": {
+                "cmd": "/opt/zookeeper/bin/zkServer.sh start"
+            },
+            "stop": {
+                "cmd": "/opt/zookeeper/bin/zkServer.sh stop"
+            }
+        }
+    }],
+    "advanced_actions": ["change_vxnet", "scale_horizontal"]
+}

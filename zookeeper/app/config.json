@@ -1,0 +1,90 @@
+{
+    "type": "array",
+    "properties": [{
+        "key": "cluster",
+        "description": "ZooKeeper cluster properties",
+        "type": "array",
+        "properties": [{
+            "key": "name",
+            "label": "name",
+            "description": "The name of the ZooKeeper service",
+            "type": "string",
+            "default": "ZooKeeper",
+            "required": "no"
+        }, {
+            "key": "description",
+            "label": "description",
+            "description": "The description of the ZooKeeper service",
+            "type": "string",
+            "default": "",
+            "required": "no"
+        }, {
+            "key": "vxnet",
+            "label": "VxNet",
+            "description": "Choose a vxnet to join",
+            "type": "string",
+            "default": "",
+            "required": "yes"
+        }, {
+            "key": "node",
+            "label": "node",
+            "description": "role-based node properties",
+            "type": "array",
+            "properties": [{
+                "key": "cpu",
+                "label": "CPU",
+                "description": "CPUs of each node",
+                "type": "integer",
+                "default": 1,
+                "range": [
+                    1,
+                    2,
+                    4,
+                    8
+                ],
+                "required": "yes"
+            }, {
+                "key": "memory",
+                "label": "Memory",
+                "description": "memory of each node (in MB)",
+                "type": "integer",
+                "default": 2048,
+                "range": [
+                    1024,
+                    2048,
+                    4096,
+                    8192,
+                    16384,
+                    32768
+                ],
+                "required": "yes"
+            }, {
+                "key": "count",
+                "label": "count",
+                "description": "Number of nodes for the cluster to create",
+                "type": "integer",
+                "default": 3,
+                "range": [
+                    1,
+                    3,
+                    5,
+                    7,
+                    9
+                ],
+                "required": "yes"
+            },{
+              "key": "instance_class",
+              "label": "resource type",
+              "description": "The instance type for the cluster to run, such as high performance, high performance plus",
+              "type": "integer",
+              "default": 0,
+              "range": [
+                0,
+                1
+              ],
+              "required": "yes"
+            }
+          ]
+        }]
+    }]
+}
