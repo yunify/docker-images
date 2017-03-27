@@ -23,4 +23,4 @@
 具体参看 [dev/start_cluster.sh](dev/start_cluster.sh)
 
 更多说明参看：
-[pitrix-appcenter-docs/examples/docker](https://git.internal.yunify.com/ray/pitrix-appcenter-docs/tree/master/examples/docker)
+[appcenter/developer-guide](https://docs.qingcloud.com/appcenter/developer-guide)
