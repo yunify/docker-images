@@ -27,5 +27,82 @@
             }
         }
     }],
-    "advanced_actions": ["change_vxnet", "scale_horizontal"]
+    "advanced_actions": ["change_vxnet", "scale_horizontal"],
+    "health_check": {
+        "enable": true,
+        "interval_sec": 60,
+        "timeout_sec": 10,
+        "action_timeout_sec": 30,
+        "healthy_threshold": 2,
+        "unhealthy_threshold": 2,
+        "check_cmd": "/opt/zookeeper/bin/check-status.sh",
+        "action_cmd": "/opt/zookeeper/bin/restart-server.sh"
+    },
+    "monitor": {
+        "enable": true,
+        "cmd": "/opt/zookeeper/bin/get-monitor.sh",
+        "items": {
+            "mode": {
+                "unit": "",
+                "value_type": "str",
+                "statistics_type": "latest",
+                "enums": ["L", "F", "S"]
+            },
+            "min": {
+                "unit": "ms",
+                "value_type": "int",
+                "statistics_type": "min",
+                "scale_factor_when_display": 1
+            },
+            "avg": {
+                "unit": "ms",
+                "value_type": "int",
+                "statistics_type": "avg",
+                "scale_factor_when_display": 1
+            },
+            "max": {
+                "unit": "ms",
+                "value_type": "int",
+                "statistics_type": "max",
+                "scale_factor_when_display": 1
+            },
+            "received": {
+                "unit": "count",
+                "value_type": "int",
+                "statistics_type": "latest",
+                "scale_factor_when_display": 1
+            },
+            "sent": {
+                "unit": "count",
+                "value_type": "int",
+                "statistics_type": "latest",
+                "scale_factor_when_display": 1
+            },
+            "active": {
+                "unit": "count",
+                "value_type": "int",
+                "statistics_type": "latest",
+                "scale_factor_when_display": 1
+            },
+            "outstanding": {
+                "unit": "count",
+                "value_type": "int",
+                "statistics_type": "latest",
+                "scale_factor_when_display": 1
+            },
+            "znode": {
+                "unit": "znode_count",
+                "value_type": "int",
+                "statistics_type": "latest",
+                "scale_factor_when_display": 1
+            }
+        },
+        "groups": {
+            "latency":  ["min", "avg", "max"],
+            "throughput": ["received", "sent"],
+            "connections": ["active", "outstanding"]
+        },
+        "display": ["mode", "latency", "throughput", "connections", "znode"],
+        "alarm": ["avg"]
+    }
 }
