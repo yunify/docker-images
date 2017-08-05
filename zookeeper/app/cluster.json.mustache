@@ -35,8 +35,8 @@
         "action_timeout_sec": 30,
         "healthy_threshold": 2,
         "unhealthy_threshold": 2,
-        "check_cmd": "/opt/zookeeper/bin/check-status.sh",
-        "action_cmd": "/opt/zookeeper/bin/restart-server.sh"
+        "check_cmd": "/opt/zookeeper/bin/zkServer.sh status",
+        "action_cmd": "/opt/zookeeper/bin/zkServer.sh restart"
     },
     "monitor": {
         "enable": true,
